@@ -3,6 +3,7 @@ import repositories from '../repositories';
 import CreatePlaylistHandler from './createPlaylist';
 import GetPlaylistByIdHandler from './getPlaylistById';
 import GetAllPlaylistsHandler from './getAllPlaylists';
+import DeletePlaylistByIdHandler from './deletePlaylistById';
 const createPlaylistHandlerWrapper = new CreatePlaylistHandler({
   playlistRepository: repositories.playlistRepository,
 });
@@ -14,6 +15,9 @@ const getPlaylistByIdHandlerWrapper = new GetPlaylistByIdHandler({
 const getAllPlaylistsHandlerWrapper = new GetAllPlaylistsHandler({
   playlistRepository: repositories.playlistRepository,
 });
+const deletePlaylistByIdHandlerWrapper = new DeletePlaylistByIdHandler({
+  playlistRepository: repositories.playlistRepository,
+});
 export const createPlaylistHandler: APIGatewayProxyHandler = async (
   event: APIGatewayProxyEvent,
 ) => createPlaylistHandlerWrapper.handler(event);
@@ -23,3 +27,7 @@ export const getPlaylistByIdHandler: APIGatewayProxyHandler = async (
 ) => getPlaylistByIdHandlerWrapper.handler(event);
 export const getAllPlaylistsHandler:
   APIGatewayProxyHandler = async () => getAllPlaylistsHandlerWrapper.handler();
+
+export const deletePlaylistByIdHandler: APIGatewayProxyHandler = async (
+  event: APIGatewayProxyEvent,
+) => deletePlaylistByIdHandlerWrapper.handler(event);
