@@ -4,6 +4,7 @@ import {
   deletePlaylistByIdHandler,
   getAllPlaylistsHandler,
   getPlaylistByIdHandler,
+  updatePlaylistByIdHandler,
 } from '../../../handlers';
 
 describe('Handlers', () => {
@@ -13,6 +14,7 @@ describe('Handlers', () => {
       expect(deletePlaylistByIdHandler).to.be.a('function');
       expect(getAllPlaylistsHandler).to.be.a('function');
       expect(getPlaylistByIdHandler).to.be.a('function');
+      expect(updatePlaylistByIdHandler).to.be.a('function');
     });
   });
 });
