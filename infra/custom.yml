@@ -5,11 +5,18 @@ esbuild:
   sourcemap: true
   keepNames: true
   bundle: true
+dynamodb:
+  start:
+    migrate: true
+    port: 8000    
+  stages:
+    - local
 
 lambdaRuntime:  
   prd: nodejs14.x    
   dev: nodejs14.x
   local: nodejs14.x
+playlistTableName: 'playlist-table-${sls:stage}'
 isOffline:
   prd: false
   dev: false

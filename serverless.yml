@@ -19,3 +19,4 @@ custom: ${file(infra/custom.yml)}
 
 plugins:
   - serverless-esbuild
+  - serverless-dynamodb-local
