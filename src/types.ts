@@ -34,4 +34,5 @@ export interface PlaylistRepositoryDependencies {
 
 export interface IPlaylistRepository {
   createPlaylist(payload: CreatePlaylistPayload): Promise<PlaylistData>
+  getPlaylistById(id: string): Promise<PlaylistData>
 }
