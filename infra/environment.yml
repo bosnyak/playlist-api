@@ -1,0 +1,2 @@
+PLAYLIST_TABLE_NAME: ${self:custom.playlistTableName}
+IS_OFFLINE: ${self:custom.isOffline.${sls:stage}}
