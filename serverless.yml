@@ -1,0 +1,21 @@
+service: playlist-api
+frameworkVersion: "3"
+
+provider:
+  name: aws
+  runtime: ${self:custom.lambdaRuntime.${sls:stage}}
+  environment: ${file(infra/environment.yml)}
+  stage: ${opt:stage, 'dev'}
+  region: ${opt:region, 'us-east-1'}
+
+functions: ${file(infra/functions.yml)}
+
+package:
+  individually: true
+
+resources: ${file(infra/resources.yml)}
+
+custom: ${file(infra/custom.yml)}
+
+plugins:
+  - serverless-esbuild

@@ -1,0 +1,16 @@
+esbuild:
+  watch:
+    pattern: ['src/**/*.ts']
+  minify: false
+  sourcemap: true
+  keepNames: true
+  bundle: true
+
+lambdaRuntime:  
+  prd: nodejs14.x    
+  dev: nodejs14.x
+  local: nodejs14.x
+isOffline:
+  prd: false
+  dev: false
+  local: true
