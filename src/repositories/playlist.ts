@@ -39,4 +39,20 @@ export default class PlaylistRepository implements IPlaylistRepository {
     }
   }
 
+  async getPlaylistById(id: string) {
+    try {
+      const doc = await this.dynamoDbClient.get({
+        TableName: this.config.playlistTableName,
+        Key: { id },
+      }).promise();
+
+      return doc.Item as PlaylistData;
+    } catch (err) {
+      if (err instanceof Error) {
+        console.log(`Failed to get playlist data from database (${err.message})`);
+      }
+      throw err;
+    }
+  }
+
 }
