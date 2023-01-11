@@ -31,3 +31,15 @@ getPlaylistById:
       Action:
         - dynamodb:GetItem
       Resource: arn:aws:dynamodb:${aws:region}:${aws:accountId}:table/${self:provider.environment.PLAYLIST_TABLE_NAME}
+deletePlaylistById:
+  handler: src/handlers/index.deletePlaylistByIdHandler
+  events:
+    - http:
+        path: /playlists/{id}
+        method: delete
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:GetItem
+        - dynamodb:DeleteItem
+      Resource: arn:aws:dynamodb:${aws:region}:${aws:accountId}:table/${self:provider.environment.PLAYLIST_TABLE_NAME}
