@@ -9,3 +9,14 @@ createPlaylist:
       Action:
         - dynamodb:PutItem
       Resource: arn:aws:dynamodb:${aws:region}:${aws:accountId}:table/${self:provider.environment.PLAYLIST_TABLE_NAME}
+getAllPlaylists:
+  handler: src/handlers/index.getAllPlaylistsHandler
+  events:
+    - http:
+        path: /playlists
+        method: get
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:Scan
+      Resource: arn:aws:dynamodb:${aws:region}:${aws:accountId}:table/${self:provider.environment.PLAYLIST_TABLE_NAME}
