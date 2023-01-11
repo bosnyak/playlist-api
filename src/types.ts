@@ -51,3 +51,7 @@ export interface ResponseData {
   statusCode?: number;
   body: object;
 }
+
+export interface DefaultHandlerDependencies {
+  playlistRepository: IPlaylistRepository
+}

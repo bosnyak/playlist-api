@@ -20,3 +20,5 @@ custom: ${file(infra/custom.yml)}
 plugins:
   - serverless-esbuild
   - serverless-dynamodb-local
+  - serverless-iam-roles-per-function
+  - serverless-offline
