@@ -13,6 +13,13 @@ export interface CreatePlaylistPayload {
   songs: [SongData];
 }
 
+export interface UpdatePlaylistPayload {
+  id: string;
+  name: string;
+  description: string;
+  songs: [SongData];
+  createdAt: string;
+}
 
 export interface PlaylistData {
   id: string;
@@ -37,4 +44,5 @@ export interface IPlaylistRepository {
   getPlaylistById(id: string): Promise<PlaylistData>
   getAllPlaylists(): Promise<PlaylistData[]>
   deletePlaylistById(id: string): Promise<void>
+  updatePlaylistById(payload: UpdatePlaylistPayload): Promise<PlaylistData>
 }
