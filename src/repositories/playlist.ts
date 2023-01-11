@@ -81,4 +81,17 @@ export default class PlaylistRepository implements IPlaylistRepository {
       throw err;
     }
   }
+  async deletePlaylistById(id: string) {
+    try {
+      await this.dynamoDbClient.delete({
+        TableName: this.config.playlistTableName,
+        Key: { id },
+      }).promise();
+    } catch (err) {
+      if (err instanceof Error) {
+        console.log(`Failed to delete playlist data from database (${err.message})`);
+      }
+      throw err;
+    }
+  }
 }

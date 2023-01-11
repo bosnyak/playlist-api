@@ -36,4 +36,5 @@ export interface IPlaylistRepository {
   createPlaylist(payload: CreatePlaylistPayload): Promise<PlaylistData>
   getPlaylistById(id: string): Promise<PlaylistData>
   getAllPlaylists(): Promise<PlaylistData[]>
+  deletePlaylistById(id: string): Promise<void>
 }
