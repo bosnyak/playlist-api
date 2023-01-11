@@ -55,4 +55,30 @@ export default class PlaylistRepository implements IPlaylistRepository {
     }
   }
 
+  async getAllPlaylists() {
+    try {
+      const playlists: PlaylistData[] = [];
+      let docs;
+
+      const params: DocumentClient.ScanInput = {
+        TableName: this.config.playlistTableName,
+      };
+      do {
+        // eslint-disable-next-line no-await-in-loop
+        docs = await this.dynamoDbClient.scan(params).promise();
+        if (!docs.Items) {
+          return [];
+        }
+        docs.Items.forEach((item) => playlists.push(item as PlaylistData));
+        params.ExclusiveStartKey = docs.LastEvaluatedKey;
+      } while (typeof docs.LastEvaluatedKey !== 'undefined');
+
+      return playlists;
+    } catch (err) {
+      if (err instanceof Error) {
+        console.log(`Failed to get all playlists data from database (${err.message})`);
+      }
+      throw err;
+    }
+  }
 }
