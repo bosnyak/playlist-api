@@ -20,3 +20,14 @@ getAllPlaylists:
       Action:
         - dynamodb:Scan
       Resource: arn:aws:dynamodb:${aws:region}:${aws:accountId}:table/${self:provider.environment.PLAYLIST_TABLE_NAME}
+getPlaylistById:
+  handler: src/handlers/index.getPlaylistByIdHandler
+  events:
+    - http:
+        path: /playlists/{id}
+        method: get
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:GetItem
+      Resource: arn:aws:dynamodb:${aws:region}:${aws:accountId}:table/${self:provider.environment.PLAYLIST_TABLE_NAME}
