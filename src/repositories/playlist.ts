@@ -5,6 +5,7 @@ import {
   PlaylistRepositoryDependencies,
   IPlaylistRepository,
   CreatePlaylistPayload,
+  UpdatePlaylistPayload,
 } from '../types';
 
 export default class PlaylistRepository implements IPlaylistRepository {
@@ -81,6 +82,7 @@ export default class PlaylistRepository implements IPlaylistRepository {
       throw err;
     }
   }
+
   async deletePlaylistById(id: string) {
     try {
       await this.dynamoDbClient.delete({
@@ -90,6 +92,26 @@ export default class PlaylistRepository implements IPlaylistRepository {
     } catch (err) {
       if (err instanceof Error) {
         console.log(`Failed to delete playlist data from database (${err.message})`);
+      }
+      throw err;
+    }
+  }
+
+  async updatePlaylistById(payload: UpdatePlaylistPayload) {
+    try {
+      const playlist: PlaylistData = {
+        ...payload,
+        updatedAt: new Date().toISOString(),
+      };
+      await this.dynamoDbClient.put({
+        TableName: this.config.playlistTableName,
+        Item: playlist,
+      }).promise();
+
+      return playlist;
+    } catch (err) {
+      if (err instanceof Error) {
+        console.log(`Failed to update playlist data into database (${err.message})`);
       }
       throw err;
     }
