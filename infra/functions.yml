@@ -1,0 +1,11 @@
+createPlaylist:
+  handler: src/handlers/index.createPlaylistHandler
+  events:
+    - http:
+        path: /playlists
+        method: post
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:PutItem
+      Resource: arn:aws:dynamodb:${aws:region}:${aws:accountId}:table/${self:provider.environment.PLAYLIST_TABLE_NAME}
