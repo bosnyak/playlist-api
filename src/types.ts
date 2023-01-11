@@ -46,3 +46,8 @@ export interface IPlaylistRepository {
   deletePlaylistById(id: string): Promise<void>
   updatePlaylistById(payload: UpdatePlaylistPayload): Promise<PlaylistData>
 }
+
+export interface ResponseData {
+  statusCode?: number;
+  body: object;
+}
