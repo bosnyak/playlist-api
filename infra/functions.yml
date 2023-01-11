@@ -43,3 +43,15 @@ deletePlaylistById:
         - dynamodb:GetItem
         - dynamodb:DeleteItem
       Resource: arn:aws:dynamodb:${aws:region}:${aws:accountId}:table/${self:provider.environment.PLAYLIST_TABLE_NAME}
+updatePlaylistById:
+  handler: src/handlers/index.updatePlaylistByIdHandler
+  events:
+    - http:
+        path: /playlists/{id}
+        method: put
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+      Resource: arn:aws:dynamodb:${aws:region}:${aws:accountId}:table/${self:provider.environment.PLAYLIST_TABLE_NAME}
