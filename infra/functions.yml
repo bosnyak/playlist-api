@@ -4,6 +4,7 @@ createPlaylist:
     - http:
         path: /playlists
         method: post
+        private: true
   iamRoleStatements:
     - Effect: Allow
       Action:
@@ -15,6 +16,7 @@ getAllPlaylists:
     - http:
         path: /playlists
         method: get
+        private: true
   iamRoleStatements:
     - Effect: Allow
       Action:
@@ -26,6 +28,7 @@ getPlaylistById:
     - http:
         path: /playlists/{id}
         method: get
+        private: true
   iamRoleStatements:
     - Effect: Allow
       Action:
@@ -37,6 +40,7 @@ deletePlaylistById:
     - http:
         path: /playlists/{id}
         method: delete
+        private: true
   iamRoleStatements:
     - Effect: Allow
       Action:
@@ -49,6 +53,7 @@ updatePlaylistById:
     - http:
         path: /playlists/{id}
         method: put
+        private: true
   iamRoleStatements:
     - Effect: Allow
       Action:
