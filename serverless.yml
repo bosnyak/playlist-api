@@ -7,6 +7,9 @@ provider:
   environment: ${file(infra/environment.yml)}
   stage: ${opt:stage, 'dev'}
   region: ${opt:region, 'us-east-1'}
+  apiGateway:
+     apiKeys:
+       - ${sls:stage}-api-access-key
 
 functions: ${file(infra/functions.yml)}
 
